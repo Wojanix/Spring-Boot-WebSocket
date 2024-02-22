@@ -10,16 +10,16 @@ import com.javatechie.spring.ws.api.model.ChatMessage;
 
 @Controller
 public class ChatController {
-
+	
 	@MessageMapping("/chat.register")
-	@SendTo("/topic/public")
+	@SendTo("/queue/{address}")
 	public ChatMessage register(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
 		return chatMessage;
 	}
 
 	@MessageMapping("/chat.send")
-	@SendTo("/topic/public")
+	@SendTo("/queue/{address}")
 	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 		return chatMessage;
 	}

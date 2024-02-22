@@ -1,5 +1,6 @@
 package com.javatechie.spring.ws.api.model;
 
+
 public class ChatMessage {
 	private String content;
 	private String sender;
