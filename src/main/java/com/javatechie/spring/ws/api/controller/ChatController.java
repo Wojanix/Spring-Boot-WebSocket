@@ -12,14 +12,14 @@ import com.javatechie.spring.ws.api.model.ChatMessage;
 public class ChatController {
 	
 	@MessageMapping("/chat.register")
-	@SendTo("/queue/{address}")
+	@SendTo("/topic/public")
 	public ChatMessage register(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
 		return chatMessage;
 	}
 
 	@MessageMapping("/chat.send")
-	@SendTo("/queue/{address}")
+	@SendTo("/topic/public")
 	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 		return chatMessage;
 	}
